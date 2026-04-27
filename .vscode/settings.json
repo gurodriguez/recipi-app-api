@@ -1,0 +1,4 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "flake8.args": ["--exclude=settings.py,*/settings.py"],
+}
