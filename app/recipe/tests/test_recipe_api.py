@@ -191,7 +191,7 @@ class PrivateRecipeAPITest(TestCase):
             'title': 'Thai Prawn Curry',
             'time_minutes': 30,
             'price': Decimal('2.50'),
-            'tags': [{'name': 'Tahi',}, {'name': 'Dinner'}]
+            'tags': [{'name': 'Tahi'}, {'name': 'Dinner'}]
         }
 
         res = self.client.post(RECIPE_URL, payload, format='json')
@@ -241,7 +241,7 @@ class PrivateRecipeAPITest(TestCase):
 
     def test_update_recipe_assign_tag(self):
         """Test assiging an existing tag when updating"""
-        tag_breakfast =  Tag.objects.create(user=self.user, name='Breakfast')
+        tag_breakfast = Tag.objects.create(user=self.user, name='Breakfast')
         recipe = create_recipe(user=self.user)
         recipe.tags.add(tag_breakfast)
 
@@ -262,6 +262,6 @@ class PrivateRecipeAPITest(TestCase):
 
         payload = {'tags': []}
         url = detail_url(recipe.id)
-        res  = self.client.patch(url, payload, format='json')
+        res = self.client.patch(url, payload, format='json')
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(recipe.tags.count(), 0)
